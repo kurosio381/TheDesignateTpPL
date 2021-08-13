@@ -1,0 +1,2 @@
+# TheDesignateTpPL
+特定の場所で特定のコマンドを打つことでTPされるやつ
