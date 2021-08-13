@@ -6,5 +6,6 @@ authors: [ kurosio381 ]
 description: TheDesignationTpPL
 
 commands:
-  TheDesignateTpPL:
-    description: テストメッセージ出力
+  tdtp:
+    description: testmessageSYUTURYOKU
+    usage:  /tdtp
