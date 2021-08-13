@@ -1,0 +1,6 @@
+name: TheDesignationTpPL
+version: @version@
+main: com.github.kurosio381.thedesignationtppl.TheDesignationTpPL
+api-version: 1.15
+authors: [ kurosio381 ]
+description: TheDesignationTpPL
