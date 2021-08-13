@@ -21,7 +21,7 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         Player p = (Player) sender;
-        if (cmd.getName().equalsIgnoreCase("TheDesignateTpPL")) {
+        if (cmd.getName().equalsIgnoreCase("tdtp")) {
             if (args.length <= 0) {
                 return false;
             }
