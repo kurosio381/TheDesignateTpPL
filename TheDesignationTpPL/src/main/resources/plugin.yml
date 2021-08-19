@@ -8,4 +8,4 @@ description: TheDesignationTpPL
 commands:
   tdtp:
     description: testmessageSYUTURYOKU
-    usage:  /tdtp
+    usage:  ThisCommandIsWrong
