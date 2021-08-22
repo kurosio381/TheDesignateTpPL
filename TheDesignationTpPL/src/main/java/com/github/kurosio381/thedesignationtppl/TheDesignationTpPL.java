@@ -62,40 +62,38 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
             }
 
             if (args[0].equalsIgnoreCase("warp")) {
-                if (args.length <= 1) {
+                if (args.length <= 2) {
                     return true;
                 }
-                if (args[1].equalsIgnoreCase(args[1])) {
-                    if (args.length <= 2) {
-                        return true;
-                    }
-                    if (args[2].equalsIgnoreCase(args[2])) {
-                        String data = getConfig().getString(args[1]);
-                        String data2 = getConfig().getString(args[2]);
-                        if (data == null) return true;
-                        if (data2 == null) return true;
-                        String[] loc = data.split(",");
-                        String[] loc2 = data2.split(",");
-                        World world = Bukkit.getServer().getWorld(loc[0]);
-                        World world2 = Bukkit.getServer().getWorld(loc2[0]);
-                        double x = Double.parseDouble(loc[1]);
-                        double y = Double.parseDouble(loc[2]);
-                        double z = Double.parseDouble(loc[3]);
-                        double x2 = Double.parseDouble(loc2[1]);
-                        double y2 = Double.parseDouble(loc2[2]);
-                        double z2 = Double.parseDouble(loc2[3]);
-                        Location location = new Location(world, x, y, z);
-                        Location location2 = new Location(world2, x2, y2, z2);
-                        Location location1 = p.getLocation();
-                        int Yaw = (int) location1.getYaw();
-                        int Pitch = (int) location1.getPitch();
-                        if (location.equals(location2)){
-                            location2.setYaw(Yaw);
-                            location2.setPitch(Pitch);
-                            p.teleport(location2);
-                        }
-                    }
-                    return true;
+                if (args[2].equalsIgnoreCase(args[2])) {
+                    String data = getConfig().getString(args[1]);
+                    String data2 = getConfig().getString(args[2]);
+                    if (data == null) return true;
+                    if (data2 == null) return true;
+                    String[] loc = data.split(",");
+                    String[] loc2 = data2.split(",");
+                    World world = Bukkit.getServer().getWorld(loc[0]);
+                    World world2 = Bukkit.getServer().getWorld(loc2[0]);
+                    double x = Double.parseDouble(loc[1]);
+                    double y = Double.parseDouble(loc[2]);
+                    double z = Double.parseDouble(loc[3]);
+                    double x2 = Double.parseDouble(loc2[1]);
+                    double y2 = Double.parseDouble(loc2[2]);
+                    double z2 = Double.parseDouble(loc2[3]);
+                    Location location = new Location(world, x, y, z);
+                    Location location2 = new Location(world2, x2, y2, z2);
+                    Location location1 = p.getLocation();
+                    World world1 = location1.getWorld();
+                    double px = location1.getX();
+                    double py = location1.getY();
+                    double pz = location1.getZ();
+                    Location location11 = new Location(world1,px,py,pz);
+                    int Yaw = (int) location11.getYaw();
+                    int Pitch = (int) location11.getPitch();
+                    if (!(location11.equals(location))) return true;
+                    location2.setYaw(Yaw);
+                    location2.setPitch(Pitch);
+                    p.teleport(location2);
                 }
                 return true;
             }
