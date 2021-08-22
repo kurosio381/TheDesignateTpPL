@@ -60,7 +60,7 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                     return true;
                 }
             }
-            
+
             if (args[0].equalsIgnoreCase("warp")) {
                 if (args.length <= 1) {
                     return true;
@@ -70,7 +70,7 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                         return true;
                     }
 
-                    //config座標がなければ処理を中止する
+                    //configに記載されていない座標であれば処理を中止する
                     String data = getConfig().getString(args[1]);
                     if (data == null) return true;
                     String data2 = getConfig().getString(args[2]);
@@ -82,12 +82,13 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                     double x = Double.parseDouble(loc[1]);
                     double y = Double.parseDouble(loc[2]);
                     double z = Double.parseDouble(loc[3]);
+
                     Location location = new Location(world, x, y, z);
                     if (args[2].equalsIgnoreCase(args[2])){
 
                         //移動後の座標
 
-                        String[] loc2 = data.split(",");
+                        String[] loc2 = data2.split(",");
                         World world2 = Bukkit.getServer().getWorld(loc2[0]);
                         double x2 = Double.parseDouble(loc2[1]);
                         double y2 = Double.parseDouble(loc2[2]);
@@ -103,11 +104,12 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                         Location location2 = new Location(world1,x1,y1,z1);
 
                         if (location2.equals(location)) {
-                            int Yaw = (int) location2.getYaw();
-                            int Pitch = (int) location2.getPitch();
+                            int Yaw = (int) location1.getYaw();
+                            int Pitch = (int) location1.getPitch();
                             location2a.setYaw(Yaw);
                             location2a.setPitch(Pitch);
                             p.teleport(location2a);
+                            p.sendMessage(ChatColor.translateAlternateColorCodes('&',"&a" + args[2] + "&rへテレポートしました"));
                         }
                     }
                 }
