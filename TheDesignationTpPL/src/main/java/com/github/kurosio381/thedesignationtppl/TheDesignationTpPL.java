@@ -45,9 +45,7 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                         int x = loc.getBlockX();
                         int y = loc.getBlockY();
                         int z = loc.getBlockZ();
-                        int yaw = (int) loc.getYaw();
-                        int pitch = (int) loc.getPitch();
-                        getConfig().set(name0,name + "," + x + "," + y + "," + z + "," + yaw + "," + pitch);
+                        getConfig().set(name0,name + "," + x + "," + y + "," + z);
                         saveConfig();
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&aset&fしました"));
                         return true;
@@ -86,14 +84,14 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                         double x2 = Double.parseDouble(loc2[1]);
                         double y2 = Double.parseDouble(loc2[2]);
                         double z2 = Double.parseDouble(loc2[3]);
-                        int yaw2 = (int) Double.parseDouble(loc2[4]);
-                        int pitch2 = (int) Double.parseDouble(loc2[5]);
                         Location location = new Location(world, x, y, z);
                         Location location2 = new Location(world2, x2, y2, z2);
                         Location location1 = p.getLocation();
-                        if (location.equals(location1)){
-                            location2.setPitch(pitch2);
-                            location2.setYaw(yaw2);
+                        int Yaw = (int) location1.getYaw();
+                        int Pitch = (int) location1.getPitch();
+                        if (location.equals(location2)){
+                            location2.setYaw(Yaw);
+                            location2.setPitch(Pitch);
                             p.teleport(location2);
                         }
                     }
