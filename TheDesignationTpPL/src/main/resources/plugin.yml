@@ -7,5 +7,12 @@ description: TheDesignationTpPL
 
 commands:
   tdtp:
-    description: testmessageSYUTURYOKU
+    description: testmessage
     usage:  /tdtp
+    permission: TheDesignation.permission.Admin
+
+permissions:
+  TheDesignation.permission.Admin:
+    default: op
+  TheDesignation.permission.Member:
+    default: true
