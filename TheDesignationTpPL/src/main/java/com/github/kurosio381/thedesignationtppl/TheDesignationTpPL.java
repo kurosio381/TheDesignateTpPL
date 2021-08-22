@@ -60,7 +60,7 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                     return true;
                 }
             }
-
+            
             if (args[0].equalsIgnoreCase("warp")) {
                 if (args.length <= 1) {
                     return true;
@@ -70,9 +70,13 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                         return true;
                     }
 
-                    //移動前の座標
+                    //config座標がなければ処理を中止する
                     String data = getConfig().getString(args[1]);
                     if (data == null) return true;
+                    String data2 = getConfig().getString(args[2]);
+                    if (data2 == null) return true;
+
+                    //移動前の座標
                     String[] loc = data.split(",");
                     World world = Bukkit.getServer().getWorld(loc[0]);
                     double x = Double.parseDouble(loc[1]);
@@ -82,8 +86,7 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                     if (args[2].equalsIgnoreCase(args[2])){
 
                         //移動後の座標
-                        String data2 = getConfig().getString(args[2]);
-                        if (data2 == null) return true;
+
                         String[] loc2 = data.split(",");
                         World world2 = Bukkit.getServer().getWorld(loc2[0]);
                         double x2 = Double.parseDouble(loc2[1]);
@@ -105,9 +108,6 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                             location2a.setYaw(Yaw);
                             location2a.setPitch(Pitch);
                             p.teleport(location2a);
-                        }else{
-                            p.sendMessage("テスト");
-                            p.sendMessage("" + location2 + "\n\n" + location);
                         }
                     }
                 }
