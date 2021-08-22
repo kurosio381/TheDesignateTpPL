@@ -69,32 +69,46 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                     if (args.length <= 2) {
                         return true;
                     }
-                    if (args[2].equalsIgnoreCase(args[2])) {
-                        String data = getConfig().getString(args[1]);
+
+                    //移動前の座標
+                    String data = getConfig().getString(args[1]);
+                    if (data == null) return true;
+                    String[] loc = data.split(",");
+                    World world = Bukkit.getServer().getWorld(loc[0]);
+                    double x = Double.parseDouble(loc[1]);
+                    double y = Double.parseDouble(loc[2]);
+                    double z = Double.parseDouble(loc[3]);
+                    Location location = new Location(world, x, y, z);
+                    if (args[2].equalsIgnoreCase(args[2])){
+
+                        //移動後の座標
                         String data2 = getConfig().getString(args[2]);
-                        if (data == null) return true;
                         if (data2 == null) return true;
-                        String[] loc = data.split(",");
-                        String[] loc2 = data2.split(",");
-                        World world = Bukkit.getServer().getWorld(loc[0]);
+                        String[] loc2 = data.split(",");
                         World world2 = Bukkit.getServer().getWorld(loc2[0]);
-                        double x = Double.parseDouble(loc[1]);
-                        double y = Double.parseDouble(loc[2]);
-                        double z = Double.parseDouble(loc[3]);
                         double x2 = Double.parseDouble(loc2[1]);
                         double y2 = Double.parseDouble(loc2[2]);
                         double z2 = Double.parseDouble(loc2[3]);
-                        Location location = new Location(world, x, y, z);
-                        Location location2 = new Location(world2, x2, y2, z2);
-                        Location location11 = p.getLocation();
-                        World world1 = location11.getWorld();
-                        int Yaw = (int) location11.getYaw();
-                        int Pitch = (int) location11.getPitch();
-                        Location location1 = new Location(world1,location11.getX(),location11.getY(),location11.getZ());
-                        if (!(location1.equals(location))) return true;
-                        location2.setYaw(Yaw);
-                        location2.setPitch(Pitch);
-                        p.teleport(location2);
+                        Location location2a = new Location(world2, x2, y2, z2);
+
+                        //コマンド入力者の座標
+                        Location location1 = p.getLocation();
+                        World world1 = location1.getWorld();
+                        int x1 = (int) location1.getX();
+                        int y1 = (int) location1.getY();
+                        int z1 = (int) location1.getZ();
+                        Location location2 = new Location(world1,x1,y1,z1);
+
+                        if (location2.equals(location)) {
+                            int Yaw = (int) location2.getYaw();
+                            int Pitch = (int) location2.getPitch();
+                            location2a.setYaw(Yaw);
+                            location2a.setPitch(Pitch);
+                            p.teleport(location2a);
+                        }else{
+                            p.sendMessage("テスト");
+                            p.sendMessage("" + location2 + "\n\n" + location);
+                        }
                     }
                 }
                 return true;
