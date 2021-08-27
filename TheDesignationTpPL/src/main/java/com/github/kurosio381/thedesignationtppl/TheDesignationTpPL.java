@@ -34,27 +34,31 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                 if (args.length <= 1) {
                     return true;
                 }
-                String name0 = args[1];
-                if (name0 == null) return true;
-                if (args[1].equalsIgnoreCase(name0)){
-                    Location loc = p.getLocation();
-                    World world = loc.getWorld();
-                    if (world == null) return true;
-                    String name = world.getName();
-                    int x = (int) loc.getX();
-                    int y = (int) loc.getY();
-                    int z = (int) loc.getZ();
-                    getConfig().set(name0,name + "," + x + "," + y + "," + z);
-                    saveConfig();
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&',name0 +"を&aset&fしました"));
-                    return true;
+                if (p.hasPermission("TheDesignation.permission.Admin")){
+                    String name0 = args[1];
+                    if (name0 == null) return true;
+                    if (args[1].equalsIgnoreCase(name0)){
+                        Location loc = p.getLocation();
+                        World world = loc.getWorld();
+                        if (world == null) return true;
+                        String name = world.getName();
+                        int x = (int) loc.getX();
+                        int y = (int) loc.getY();
+                        int z = (int) loc.getZ();
+                        getConfig().set(name0,name + "," + x + "," + y + "," + z);
+                        saveConfig();
+                        sender.sendMessage(ChatColor.translateAlternateColorCodes('&',name0 +"を&aset&fしました"));
+                        return true;
+                    }
                 }
             }
 
             if (args[0].equalsIgnoreCase("reload")) {
-                reloadConfig();
-                sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&aconfig&fリロードしました"));
-                return true;
+                if (p.hasPermission("TheDesignation.permission.Admin")){
+                    reloadConfig();
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&',"&aconfig&fリロードしました"));
+                    return true;
+                }
             }
 
             if (args[0].equalsIgnoreCase("warp")) {
@@ -65,7 +69,6 @@ public final class TheDesignationTpPL extends JavaPlugin implements Listener {
                     if (args.length <= 2) {
                         return true;
                     }
-
                     //configに記載されていない座標であれば処理を中止する
                     String data = getConfig().getString(args[1]);
                     if (data == null) return true;
